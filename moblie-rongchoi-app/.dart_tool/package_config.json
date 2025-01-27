@@ -86,6 +86,12 @@
       "languageVersion": "3.3"
     },
     {
+      "name": "fixnum",
+      "rootUri": "file:///Users/vokhanh12/.pub-cache/hosted/pub.dev/fixnum-1.1.1",
+      "packageUri": "lib/",
+      "languageVersion": "3.1"
+    },
+    {
       "name": "flutter",
       "rootUri": "file:///Users/vokhanh12/flutter/packages/flutter",
       "packageUri": "lib/",
@@ -212,6 +218,12 @@
       "languageVersion": "3.0"
     },
     {
+      "name": "protobuf",
+      "rootUri": "file:///Users/vokhanh12/.pub-cache/hosted/pub.dev/protobuf-3.1.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.19"
+    },
+    {
       "name": "provider",
       "rootUri": "file:///Users/vokhanh12/.pub-cache/hosted/pub.dev/provider-6.1.2",
       "packageUri": "lib/",
@@ -296,7 +308,7 @@
       "languageVersion": "3.6"
     }
   ],
-  "generated": "2025-01-26T04:42:43.239023Z",
+  "generated": "2025-01-27T04:42:06.645337Z",
   "generator": "pub",
   "generatorVersion": "3.6.0",
   "flutterRoot": "file:///Users/vokhanh12/flutter",
