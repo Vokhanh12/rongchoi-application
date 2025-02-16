@@ -21,3 +21,11 @@ class RouteException implements Exception {
   final String message;
   const RouteException(this.message);
 }
+
+
+class DatabaseException implements Exception {}
+
+class SharedPreferencesException implements Exception {}
+
+class ConnectionException implements Exception {}
+
