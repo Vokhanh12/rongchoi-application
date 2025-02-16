@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:rongchoi_application/core/config/app_dimensions.dart';
 import 'package:rongchoi_application/core/config/app_typography.dart';
 import 'package:rongchoi_application/core/config/space.dart';
+import 'package:rongchoi_application/core/constants/assets.dart';
 import 'package:rongchoi_application/core/validator/validator.dart';
 import 'package:rongchoi_application/features/presentation/widgets/auth_screen_component.dart';
+import 'package:rongchoi_application/features/presentation/widgets/custom_textformfield.dart';
 
 
 class LoginScreen extends StatefulWidget {
@@ -30,8 +32,6 @@ class _LoginScreenState extends State<LoginScreen> {
     _usernameFocusNode = FocusNode();
     _passwordForcusNode = FocusNode();
 
-
-
     super.initState();
   }
 
@@ -57,17 +57,15 @@ class _LoginScreenState extends State<LoginScreen> {
               child: Column(
                 children: [
                   authTopColumn(false),
-                  // customTextFormField(
-                  //     label: "Email Address*",
-                  //     svgUrl: AppAssets.email,
-                  //     controller: _emailController,
-                  //     validator: _validators.validateEmail),
-                  // Space.yf(1.3),
-                  // customTextFormField(
-                  //     label: "Password*",
-                  //     svgUrl: AppAssets.password,
-                  //     controller: _passwordController,
-                  //     validator: _validators.validatePassword),
+                  customTextFormField(
+                      label: "Email Address*",
+                      controller: _usernameController,
+                      ),
+                  Space.yf(1.3),
+                  customTextFormField(
+                      label: "Password*",
+                      controller: _passwordController,
+                      validator: _validators.validatePassword),
                   Space.yf(.3),
                   Align(
                     alignment: Alignment.centerRight,

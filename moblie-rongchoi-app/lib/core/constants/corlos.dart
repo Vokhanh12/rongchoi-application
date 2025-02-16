@@ -58,4 +58,14 @@ sealed class AppColors {
 
   /// A transparent color with 24% opacity
   static const Color transparentColor = Color(0xff484848); //with opacity 24%
+
+  // Color for custome text form field componet 
+  static const Color iceBlueBackgroupTf = Color(0xFFF0F5FA);
+  static const Color blueHazeTextTf = Color(0xFFB4B9CA);
+
+
+
+
+
+
 }
