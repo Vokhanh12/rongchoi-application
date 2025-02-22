@@ -4,9 +4,7 @@ import 'package:rongchoi_application/features/data/datasources/db/database_helpe
 import 'package:rongchoi_application/features/domain/entities/tranlations_entity.dart';
 
 abstract class TranlationLocalDataSource {
-  Future<List<TranlationsEntity>> getALlTranlationLocal(String tranlationId);
-
-  
+  Future<List<TranlationsEntity>> getALlTranlationLocal();
 }
 
 class TrnaltionLocalDataSourceImpl implements TranlationLocalDataSource {
@@ -15,9 +13,9 @@ class TrnaltionLocalDataSourceImpl implements TranlationLocalDataSource {
   TrnaltionLocalDataSourceImpl(this.databaseHelper);
 
   @override
-  Future<List<TranlationsEntity>> getALlTranlationLocal(String tranlationId) async{
+  Future<List<TranlationsEntity>> getALlTranlationLocal() async{
     try{
-      return await databaseHelper.getTranlationsAllLocal(tranlationId);
+      return await databaseHelper.getAllTranslationsLocal();
     } catch (e) {
       throw DatabaseException();
     }

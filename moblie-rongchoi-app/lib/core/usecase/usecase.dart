@@ -1,6 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
-import 'package:rongchoi_application/core/error/exception.dart';
+import 'package:rongchoi_application/core/error/failure.dart';
 
 abstract class UseCase<T, P>{
   /// Future<T> call(P param);

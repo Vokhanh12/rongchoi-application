@@ -39,11 +39,11 @@ class DatabaseHelper {
     return true;
   }
 
-  Future<TranlationsEntity> getTranlationsAllLocal(int id) async {
+ Future<List<TranlationsEntity>> getAllTranslationsLocal() async {
     final db = await store;
-    final query = db!.box<TranlationsEntity>().query(TranlationsEntity_.id.equals(id)).build();
-    final results = await Future(() => query.find());
+    final query = db!.box<TranlationsEntity>().query().build();
+    final results = query.find();
     query.close();
-    return results[0];
+    return results;
   }
 }

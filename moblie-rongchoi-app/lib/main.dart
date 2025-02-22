@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:rongchoi_application/core/constants/corlos.dart';
 import 'package:rongchoi_application/core/constants/strings.dart';
@@ -7,7 +5,6 @@ import 'package:rongchoi_application/core/routes/routes.dart';
 import 'package:rongchoi_application/features/data/datasources/db/database_helper.dart';
 import 'package:rongchoi_application/features/domain/entities/tranlations_entity.dart';
 import 'package:rongchoi_application/injection_container.dart';
-import 'package:rongchoi_application/objectbox.g.dart';
 
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
@@ -17,14 +14,15 @@ void main() async{
   final store = await dbHelper.store;
 
 
-  //final tranlations = TranlationsEntity(id: 1, code: 'RC.Username', tranlationVi: 'Tên đăng nhập', tranlationEn: 'Username');
+  final tranlations_1= TranlationsEntity(id: 1, code: 'RC.Username', tranlationVi: 'Tên đăng nhập', tranlationEn: 'Username');
+  final tranlations_2 = TranlationsEntity(id: 2, code: 'RC.Password', tranlationVi: 'Mật khẩu', tranlationEn: 'Password');
+  await dbHelper.saveTranlationLocal(tranlations_1);
+  await dbHelper.saveTranlationLocal(tranlations_2);
 
-  //await dbHelper.saveTranlationLocal(tranlations);
+  print("test"); 
 
-  print("test");
-
-  var test = await dbHelper.getTranlationsAllLocal(1);
-  print(dbHelper.getTranlationsAllLocal(1));
+  var test = await dbHelper.getAllTranslationsLocal();
+  print(test);
 
   runApp(const MyApp());
 }
