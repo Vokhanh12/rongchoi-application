@@ -4,8 +4,8 @@ import 'package:rongchoi_application/core/config/app_typography.dart';
 import 'package:rongchoi_application/core/config/space.dart';
 import 'package:rongchoi_application/core/validator/validator.dart';
 import 'package:rongchoi_application/features/presentation/widgets/auth_screen_component.dart';
+import 'package:rongchoi_application/features/presentation/widgets/custom_text.dart';
 import 'package:rongchoi_application/features/presentation/widgets/custom_textformfield.dart';
-
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -57,9 +57,9 @@ class _LoginScreenState extends State<LoginScreen> {
                 children: [
                   authTopColumn(false),
                   CustomTextFormField(
-                      label: "RC.Username",
-                      controller: _usernameController,
-                      ),
+                    label: "RC.Username",
+                    controller: _usernameController,
+                  ),
                   Space.yf(1.3),
                   CustomTextFormField(
                       label: "RC.Password",
@@ -67,12 +67,11 @@ class _LoginScreenState extends State<LoginScreen> {
                       validator: _validators.validatePassword),
                   Space.yf(.3),
                   Align(
-                    alignment: Alignment.centerRight,
-                    child: Text(
-                      "Forgot Password?",
-                      style: AppText.b2,
-                    ),
-                  ),
+                      alignment: Alignment.centerRight,
+                      child: CustomText(
+                        text: "RC.ForgotPassword",
+                        style: AppText.b2,
+                      )),
                   Space.yf(2.5),
                   // BlocConsumer<SignInBloc, SignInState>(
                   //   listener: (context, state) {
@@ -116,5 +115,4 @@ class _LoginScreenState extends State<LoginScreen> {
       }),
     );
   }
-
 }

@@ -18,11 +18,12 @@ void main() async{
   final dbHelper = DatabaseHelper();
   final store = await dbHelper.store;
 
-
-  final tranlations_1= TranlationsEntity(id: 1, code: 'RC.Username', tranlationVi: 'Tên đăng nhập', tranlationEn: 'Username');
+  final tranlations_1 = TranlationsEntity(id: 1, code: 'RC.Username', tranlationVi: 'Tên đăng nhập', tranlationEn: 'Username');
   final tranlations_2 = TranlationsEntity(id: 2, code: 'RC.Password', tranlationVi: 'Mật khẩu', tranlationEn: 'Password');
+  final tranlations_3 = TranlationsEntity(id: 2, code: 'RC.ForgotPassword', tranlationVi: 'Quên mật khẩu', tranlationEn: 'Forgot password?');
   await dbHelper.saveTranlationLocal(tranlations_1);
   await dbHelper.saveTranlationLocal(tranlations_2);
+  await dbHelper.saveTranlationLocal(tranlations_3);
 
   print("test"); 
 

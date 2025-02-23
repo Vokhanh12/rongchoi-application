@@ -1,49 +1,114 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:rongchoi_application/core/config/app_dimensions.dart';
 import 'package:rongchoi_application/core/config/app_typography.dart';
 import 'package:rongchoi_application/core/constants/corlos.dart';
+import 'package:rongchoi_application/features/presentation/bloc/tranlation_bloc/tranlation_bloc.dart';
+import 'package:rongchoi_application/features/presentation/utils/tranlation_util.dart';
 
-Widget customTextFormField(
-    {required String label,
-    String? svgUrl,
-    String? Function(String?)? validator,
-    required TextEditingController controller}) {
-  return Container(
-    alignment: Alignment.center,
-    padding: EdgeInsets.fromLTRB(30, 3, 20, 0),
-    margin: EdgeInsets.only(left: 10, right: 10),
-    height: 50,
-    decoration: BoxDecoration(
-        color: AppColors.iceBlueBackgroupTf, borderRadius: BorderRadius.circular(10)),
-    child: TextFormField(
-      cursorColor: AppColors.deepTeal,
-      autovalidateMode: AutovalidateMode.onUserInteraction,
-      validator: validator,
-      controller: controller,
-      style: AppText.b3,
-      decoration: InputDecoration(
-          prefixIcon: svgUrl == null
-              ? null
-              : Padding(
-                  padding: EdgeInsets.only(
-                      right: AppDimensions.normalize(10),
-                      top: AppDimensions.normalize(1)),
-                  child: SvgPicture.asset(
-                    svgUrl,
-                    colorFilter: const ColorFilter.mode(
-                        AppColors.deepTeal, BlendMode.srcIn),
-                  ),
+class CustomTextFormField extends StatefulWidget {
+  final String label;
+  final String? svgUrl;
+  final String? Function(String?)? validator;
+  final TextEditingController controller;
+
+  const CustomTextFormField({
+    Key? key,
+    required this.label,
+    this.svgUrl,
+    this.validator,
+    required this.controller,
+  }) : super(key: key);
+
+  @override
+  _CustomTextFormFieldState createState() => _CustomTextFormFieldState();
+}
+
+class _CustomTextFormFieldState extends State<CustomTextFormField> {
+  @override
+  void initState() {
+    super.initState();
+    context.read<TranlationBloc>().add(GetAllTranlationsLocalEvent());
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<TranlationBloc, TranlationState>(
+      builder: (context, state) {
+        if (state is LoadingTranlationState) {
+          return Center(child: CircularProgressIndicator());
+        } else if (state is GetAllTranlationsLocalState) {
+          return Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(left: 8, bottom: 5),
+                child: Text(
+                  "TITLE",
+                  style: AppText.b1?.copyWith(
+                      color: AppColors.TF_TEXT_COLOR,
+                      fontWeight: FontWeight.w400),
                 ),
-          border: InputBorder.none,
-          focusedBorder: InputBorder.none,
-          enabledBorder: InputBorder.none,
-          errorBorder: InputBorder.none,
-          disabledBorder: InputBorder.none,
-          errorStyle: AppText.l1b?.copyWith(color: Colors.red),
-          errorMaxLines: 3,
-          hintText: label,
-          labelStyle: AppText.b1?.copyWith(color: AppColors.blueHazeTextTf)),
-    ),
-  );
+              ),
+              Container(
+                  alignment: Alignment.center,
+                  padding: const EdgeInsets.fromLTRB(30, 3, 20, 0),
+                  margin: const EdgeInsets.only(left: 10, right: 10),
+                  height: 60,
+                  decoration: BoxDecoration(
+                    color: AppColors.TF_BOXDECORATION_COLOR,
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  child: TextFormField(
+                    cursorColor: AppColors.TF_CURSOR_COLOR,
+                    autovalidateMode: AutovalidateMode.onUserInteraction,
+                    validator: widget.validator,
+                    controller: widget.controller,
+                    style: AppText.b2,
+                    decoration: InputDecoration(
+                      prefixIcon: widget.svgUrl == null
+                          ? null
+                          : Padding(
+                              padding: EdgeInsets.only(
+                                right: AppDimensions.normalize(10),
+                                top: AppDimensions.normalize(1),
+                              ),
+                              child: SvgPicture.asset(
+                                widget.svgUrl!,
+                                colorFilter: const ColorFilter.mode(
+                                  AppColors.deepTeal,
+                                  BlendMode.srcIn,
+                                ),
+                              ),
+                            ),
+                      border: InputBorder.none,
+                      focusedBorder: InputBorder.none,
+                      enabledBorder: InputBorder.none,
+                      errorBorder: InputBorder.none,
+                      disabledBorder: InputBorder.none,
+                      errorStyle: AppText.l1b?.copyWith(color: Colors.red),
+                      errorMaxLines: 3,
+                      hintText: TranlationUtil.getTranlationsByCode(
+                          state.tranlationItems, widget.label),
+                      labelStyle:
+                          AppText.b1?.copyWith(color: AppColors.TF_TEXT_COLOR),
+                    ),
+                  )),
+            ],
+          );
+        }
+
+        return Container();
+      },
+    );
+  }
+
+
 }

@@ -19,9 +19,10 @@ class TranlationBloc extends Bloc<TranlationEvent, TranlationState>{
   }
 
   Future<void> getAllTranlationsLocalEvent(event, emit) async {
-    Future.delayed(Duration(seconds: 5));
 
     emit(const LoadingTranlationState());
+    await Future.delayed(Duration(seconds: 5));
+
     try{
       final function = await getAllTranlationsLocalUsecase.call(ParamsGetAllTranlationsLocalUsecase());
       function.fold(
