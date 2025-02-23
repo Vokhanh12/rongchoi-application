@@ -1,13 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rongchoi_application/core/constants/corlos.dart';
 import 'package:rongchoi_application/core/constants/strings.dart';
+import 'package:rongchoi_application/core/observer/bloc_observer.dart';
 import 'package:rongchoi_application/core/routes/routes.dart';
 import 'package:rongchoi_application/features/data/datasources/db/database_helper.dart';
 import 'package:rongchoi_application/features/domain/entities/tranlations_entity.dart';
+import 'package:rongchoi_application/features/presentation/bloc/tranlation_bloc/tranlation_bloc.dart';
 import 'package:rongchoi_application/injection_container.dart';
 
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
+  Bloc.observer = RCBlocObserver();
+
   await initLocator();
 
   final dbHelper = DatabaseHelper();
@@ -43,21 +48,20 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Nibbles',
-      debugShowCheckedModeBanner: false,
-      onGenerateRoute: AppRouter.onGenerateRoute,
-      initialRoute: AppRouter.login,
-      theme: ThemeData(
-        fontFamily: AppStrings.fontFamily,
-        scaffoldBackgroundColor: AppColors.scaffoldBackground,
-        checkboxTheme: CheckboxThemeData(
-          fillColor: MaterialStateColor.resolveWith(
-            (states) => AppColors.lightGrey,
+    return MultiBlocProvider(
+      providers: [
+          BlocProvider<TranlationBloc>(create: (context) => locator<TranlationBloc>()),
+      ],
+        child:  MaterialApp(
+          title: 'Nibbles',
+          debugShowCheckedModeBanner: false,
+          onGenerateRoute: AppRouter.onGenerateRoute,
+          initialRoute: AppRouter.login,
+          theme: ThemeData(
+            fontFamily: AppStrings.fontFamily,
+            scaffoldBackgroundColor: AppColors.MA_SFBACKGROUP_COLOR,
           ),
-        ),
-      
-      ),
+        )
     );
   }
 }

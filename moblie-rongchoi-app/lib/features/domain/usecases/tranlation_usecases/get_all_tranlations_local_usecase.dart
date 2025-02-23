@@ -8,7 +8,7 @@ import 'package:rongchoi_application/features/domain/repositories/tranlation_rep
 class GetAllTranlationsLocalUsecase implements UseCase<List<TranlationsEntity>, ParamsGetAllTranlationsLocalUsecase> {
   final TranlationRepository tranlationRepository;
 
-  GetAllTranlationsLocalUsecase({required this.tranlationRepository});
+  GetAllTranlationsLocalUsecase(this.tranlationRepository);
   
   @override
   Future<Either<Failure, List<TranlationsEntity>>> call(ParamsGetAllTranlationsLocalUsecase params) {
@@ -19,16 +19,15 @@ class GetAllTranlationsLocalUsecase implements UseCase<List<TranlationsEntity>, 
 
 
 class ParamsGetAllTranlationsLocalUsecase extends Equatable{
-  final String tranlationId;
 
-  const ParamsGetAllTranlationsLocalUsecase({required this.tranlationId});
+  const ParamsGetAllTranlationsLocalUsecase();
 
   @override
-  List<Object> get props => [tranlationId];
+  List<Object> get props => [];
 
   @override
   String toString() {
-    return 'ParamsGetAllTranlationsLocalUsecase Params{tranlationId: $tranlationId}';
+    return 'ParamsGetAllTranlationsLocalUsecase Params{}';
   }
 
 }

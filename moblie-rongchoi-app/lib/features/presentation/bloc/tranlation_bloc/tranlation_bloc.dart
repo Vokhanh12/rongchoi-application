@@ -19,10 +19,11 @@ class TranlationBloc extends Bloc<TranlationEvent, TranlationState>{
   }
 
   Future<void> getAllTranlationsLocalEvent(event, emit) async {
+    Future.delayed(Duration(seconds: 5));
+
     emit(const LoadingTranlationState());
     try{
-      final tranlationId = event.tranlationId;
-      final function = await getAllTranlationsLocalUsecase.call(ParamsGetAllTranlationsLocalUsecase(tranlationId: tranlationId));
+      final function = await getAllTranlationsLocalUsecase.call(ParamsGetAllTranlationsLocalUsecase());
       function.fold(
         (failure) {
           emit(const ErrorTranlationState(message: Constants.databaseFailureMessage));

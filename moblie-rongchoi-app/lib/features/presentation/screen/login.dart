@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:rongchoi_application/core/config/app_dimensions.dart';
 import 'package:rongchoi_application/core/config/app_typography.dart';
 import 'package:rongchoi_application/core/config/space.dart';
-import 'package:rongchoi_application/core/constants/assets.dart';
 import 'package:rongchoi_application/core/validator/validator.dart';
 import 'package:rongchoi_application/features/presentation/widgets/auth_screen_component.dart';
 import 'package:rongchoi_application/features/presentation/widgets/custom_textformfield.dart';
@@ -57,13 +56,13 @@ class _LoginScreenState extends State<LoginScreen> {
               child: Column(
                 children: [
                   authTopColumn(false),
-                  customTextFormField(
-                      label: "Email Address*",
+                  CustomTextFormField(
+                      label: "RC.Username",
                       controller: _usernameController,
                       ),
                   Space.yf(1.3),
-                  customTextFormField(
-                      label: "Password*",
+                  CustomTextFormField(
+                      label: "RC.Password",
                       controller: _passwordController,
                       validator: _validators.validatePassword),
                   Space.yf(.3),

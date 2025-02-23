@@ -9,9 +9,8 @@ abstract class TranlationEvent extends Equatable {
 }
 
 class GetAllTranlationsLocalEvent extends TranlationEvent {
-  final String tranlationId;
-  const GetAllTranlationsLocalEvent(this.tranlationId);
+  const GetAllTranlationsLocalEvent();
 
   @override
-  List<Object> get props => [tranlationId];
+  List<Object> get props => [];
 }
