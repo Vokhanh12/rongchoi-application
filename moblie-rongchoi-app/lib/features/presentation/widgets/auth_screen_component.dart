@@ -12,7 +12,7 @@ Widget authTopColumn(bool isFromSignUp) {
       Space.yf(1.5),
       const Padding(
         padding: EdgeInsets.only(left: 60, right: 60),
-        child: Image(image: AssetImage(AppAssets.logoRongchoi)),
+        child: Image(image: AssetImage(AppAssets.logoSplashScreen)),
       ),
       Space.yf(1.5),
     ],

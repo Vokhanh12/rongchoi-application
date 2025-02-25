@@ -20,10 +20,12 @@ void main() async{
 
   final tranlations_1 = TranlationsEntity(id: 1, code: 'RC.Username', tranlationVi: 'Tên đăng nhập', tranlationEn: 'Username');
   final tranlations_2 = TranlationsEntity(id: 2, code: 'RC.Password', tranlationVi: 'Mật khẩu', tranlationEn: 'Password');
-  final tranlations_3 = TranlationsEntity(id: 2, code: 'RC.ForgotPassword', tranlationVi: 'Quên mật khẩu', tranlationEn: 'Forgot password?');
+  final tranlations_3 = TranlationsEntity(id: 3, code: 'RC.ForgotPassword', tranlationVi: 'Quên mật khẩu', tranlationEn: 'Forgot password?');
+  final tranlations_4 = TranlationsEntity(id: 4, code: 'RC.Login', tranlationVi: 'Đăng nhập', tranlationEn: 'Login');
   await dbHelper.saveTranlationLocal(tranlations_1);
   await dbHelper.saveTranlationLocal(tranlations_2);
   await dbHelper.saveTranlationLocal(tranlations_3);
+  await dbHelper.saveTranlationLocal(tranlations_4);
 
   print("test"); 
 
@@ -57,7 +59,7 @@ class _MyAppState extends State<MyApp> {
           title: 'Nibbles',
           debugShowCheckedModeBanner: false,
           onGenerateRoute: AppRouter.onGenerateRoute,
-          initialRoute: AppRouter.login,
+          initialRoute: AppRouter.splash,
           theme: ThemeData(
             fontFamily: AppStrings.fontFamily,
             scaffoldBackgroundColor: AppColors.MA_SFBACKGROUP_COLOR,

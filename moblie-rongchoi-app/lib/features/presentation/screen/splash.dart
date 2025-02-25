@@ -12,7 +12,7 @@ class SplashScreen extends StatefulWidget {
 
 class _SplashScreenState extends State<SplashScreen> {
   void _nextScreen() {
-    Future.delayed(const Duration(seconds: 2), () {
+    Future.delayed(const Duration(seconds: 5), () {
       Navigator.of(context).pushNamedAndRemoveUntil(
         AppRouter.login,
         (route) => false,
@@ -38,7 +38,7 @@ class _SplashScreenState extends State<SplashScreen> {
         fit: StackFit.expand,
         children: [
           Padding(
-            padding: const EdgeInsets.all(50.0),
+            padding: const EdgeInsets.all(100.0),
             child: Image(image: AssetImage(AppAssets.logoSplashScreen)),
           ),
         ],

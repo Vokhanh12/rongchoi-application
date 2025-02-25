@@ -6,6 +6,7 @@ import 'package:rongchoi_application/core/validator/validator.dart';
 import 'package:rongchoi_application/features/presentation/widgets/auth_screen_component.dart';
 import 'package:rongchoi_application/features/presentation/widgets/custom_text.dart';
 import 'package:rongchoi_application/features/presentation/widgets/custom_textformfield.dart';
+import 'package:rongchoi_application/features/presentation/widgets/custome_elevated_button.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -55,7 +56,6 @@ class _LoginScreenState extends State<LoginScreen> {
               key: _formKey,
               child: Column(
                 children: [
-                  authTopColumn(false),
                   CustomTextFormField(
                     label: "RC.Username",
                     controller: _usernameController,
@@ -104,15 +104,14 @@ class _LoginScreenState extends State<LoginScreen> {
                   //   },
                   // ),
                   Space.yf(2.5),
+                  CustomeElevatedButton(text: "RC.Login")
                 ],
               ),
             ),
           ),
         ),
       ),
-      bottomNavigationBar: authBottomButton(false, () {
-        //Navigator.of(context).pushNamed(AppRouter.signup);
-      }),
+    
     );
   }
 }

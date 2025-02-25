@@ -9,6 +9,7 @@ import 'package:rongchoi_application/features/presentation/utils/tranlation_util
 
 class CustomTextFormField extends StatefulWidget {
   final String label;
+  final String? title;
   final String? svgUrl;
   final String? Function(String?)? validator;
   final TextEditingController controller;
@@ -16,6 +17,7 @@ class CustomTextFormField extends StatefulWidget {
   const CustomTextFormField({
     Key? key,
     required this.label,
+    this.title,
     this.svgUrl,
     this.validator,
     required this.controller,
@@ -48,10 +50,11 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              if(widget.title != null)
               Padding(
                 padding: const EdgeInsets.only(left: 8, bottom: 5),
                 child: Text(
-                  "TITLE",
+                  widget.title!,
                   style: AppText.b1?.copyWith(
                       color: AppColors.TF_TEXT_COLOR,
                       fontWeight: FontWeight.w400),
@@ -60,7 +63,6 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
               Container(
                   alignment: Alignment.center,
                   padding: const EdgeInsets.fromLTRB(30, 3, 20, 0),
-                  margin: const EdgeInsets.only(left: 10, right: 10),
                   height: 60,
                   decoration: BoxDecoration(
                     color: AppColors.TF_BOXDECORATION_COLOR,
