@@ -4,8 +4,11 @@ import 'package:rongchoi_application/core/config/app_typography.dart';
 import 'package:rongchoi_application/core/config/space.dart';
 import 'package:rongchoi_application/core/validator/validator.dart';
 import 'package:rongchoi_application/features/presentation/widgets/auth_screen_component.dart';
+import 'package:rongchoi_application/features/presentation/widgets/auto_form.dart';
 import 'package:rongchoi_application/features/presentation/widgets/custom_text.dart';
 import 'package:rongchoi_application/features/presentation/widgets/custom_textformfield.dart';
+import 'package:rongchoi_application/features/presentation/widgets/custome_checkbox.dart';
+import 'package:rongchoi_application/features/presentation/widgets/custome_column_data.dart';
 import 'package:rongchoi_application/features/presentation/widgets/custome_elevated_button.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -52,66 +55,84 @@ class _LoginScreenState extends State<LoginScreen> {
           minimum: EdgeInsets.only(top: AppDimensions.normalize(20)),
           child: Padding(
             padding: Space.hf(1.3),
-            child: Form(
-              key: _formKey,
-              child: Column(
-                children: [
-                  CustomTextFormField(
-                    label: "RC.Username",
-                    controller: _usernameController,
-                  ),
-                  Space.yf(1.3),
-                  CustomTextFormField(
-                      label: "RC.Password",
-                      controller: _passwordController,
-                      validator: _validators.validatePassword),
-                  Space.yf(.3),
-                  Align(
-                      alignment: Alignment.centerRight,
-                      child: CustomText(
-                        text: "RC.ForgotPassword",
-                        style: AppText.b2,
-                      )),
-                  Space.yf(2.5),
-                  // BlocConsumer<SignInBloc, SignInState>(
-                  //   listener: (context, state) {
-                  //     if (state.status == SignInStatus.error) {
-                  //       showErrorAuthBottomSheet(context);
-                  //     }
-                  //     if (state.status == SignInStatus.success) {
-                  //       showSuccessfulAuthBottomSheet(context, false);
-                  //     }
-                  //   },
-                  //   builder: (context, state) {
-                  //     return customElevatedButton(
-                  //       onTap: () {
-                  //         if (_formKey.currentState!.validate()) {
-                  //           context.read<SignInBloc>().add(
-                  //                 SignInWithCredential(
-                  //                   email: _emailController.text.trim(),
-                  //                   password: _passwordController.text.trim(),
-                  //                 ),
-                  //               );
-                  //         }
-                  //       },
-                  //       text: (state.status == SignInStatus.submitting)
-                  //           ? AppStrings.wait
-                  //           : "Login".toUpperCase(),
-                  //       heightFraction: 20,
-                  //       width: double.infinity,
-                  //       color: AppColors.commonAmber,
-                  //     );
-                  //   },
-                  // ),
-                  Space.yf(2.5),
-                  CustomeElevatedButton(text: "RC.Login")
+            child: AutoForm(
+              child: CustomeColumnData(
+                validators: _validators,
+                controllers: [
+                  {"Username": TextEditingController()},
+                  {"Password": TextEditingController()},
                 ],
               ),
             ),
+
+            // child: Form(
+            //   key: _formKey,
+            //   child: Column(
+            //     children: [
+            //       CustomTextFormField(
+            //         label: "RC.Username",
+            //         controller: _usernameController,
+            //       ),
+            //       Space.yf(1.3),
+            //       CustomTextFormField(
+            //           label: "RC.Password",
+            //           controller: _passwordController,
+            //           validator: _validators.validatePassword),
+            //       Space.yf(.3),
+            //       Row(
+            //         children: [
+            //           Row(
+            //             children: [
+            //               CustomeCheckbox(onChanged: (isChecked){}, value: true),
+            //               CustomText(text: "RC.Remember")
+            //             ],
+            //           ),
+            //           Spacer(),
+            //           CustomText(
+            //             text: "RC.ForgotPassword",
+            //             style: AppText.b2,
+            //           ),
+            //         ],
+            //       ),
+            //       Space.yf(2.5),
+            //       // BlocConsumer<SignInBloc, SignInState>(
+            //       //   listener: (context, state) {
+            //       //     if (state.status == SignInStatus.error) {
+            //       //       showErrorAuthBottomSheet(context);
+            //       //     }
+            //       //     if (state.status == SignInStatus.success) {
+            //       //       showSuccessfulAuthBottomSheet(context, false);
+            //       //     }
+            //       //   },
+            //       //   builder: (context, state) {
+            //       //     return customElevatedButton(
+            //       //       onTap: () {
+            //       //         if (_formKey.currentState!.validate()) {
+            //       //           context.read<SignInBloc>().add(
+            //       //                 SignInWithCredential(
+            //       //                   email: _emailController.text.trim(),
+            //       //                   password: _passwordController.text.trim(),
+            //       //                 ),
+            //       //               );
+            //       //         }
+            //       //       },
+            //       //       text: (state.status == SignInStatus.submitting)
+            //       //           ? AppStrings.wait
+            //       //           : "Login".toUpperCase(),
+            //       //       heightFraction: 20,
+            //       //       width: double.infinity,
+            //       //       color: AppColors.commonAmber,
+            //       //     );
+            //       //   },
+            //       // ),
+            //       Space.yf(2.5),
+            //       CustomeElevatedButton(text: "RC.Login")
+            //     ],
+            //   ),
+            // ),
           ),
         ),
       ),
-    
     );
   }
 }

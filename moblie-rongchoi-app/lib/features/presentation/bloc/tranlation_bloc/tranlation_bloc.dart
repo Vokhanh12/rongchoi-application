@@ -10,32 +10,29 @@ import 'package:rongchoi_application/features/domain/usecases/tranlation_usecase
 part 'tranlation_state.dart';
 part 'tranlation_event.dart';
 
-class TranlationBloc extends Bloc<TranlationEvent, TranlationState>{
+class TranlationBloc extends Bloc<TranlationEvent, TranlationState> {
   final GetAllTranlationsLocalUsecase getAllTranlationsLocalUsecase;
 
-  TranlationBloc({required this.getAllTranlationsLocalUsecase}) : super(const InitTranlationState()){
+  TranlationBloc({required this.getAllTranlationsLocalUsecase})
+      : super(const InitTranlationState()) {
     on<GetAllTranlationsLocalEvent>(getAllTranlationsLocalEvent);
-
   }
 
   Future<void> getAllTranlationsLocalEvent(event, emit) async {
-
     emit(const LoadingTranlationState());
     await Future.delayed(Duration(seconds: 5));
 
-    try{
-      final function = await getAllTranlationsLocalUsecase.call(ParamsGetAllTranlationsLocalUsecase());
-      function.fold(
-        (failure) {
-          emit(const ErrorTranlationState(message: Constants.databaseFailureMessage));
-        },
-        (data) {
-          emit(GetAllTranlationsLocalState(tranlationItems: data));
-        }
-      );
-    } catch(e) {
+    try {
+      final function = await getAllTranlationsLocalUsecase
+          .call(ParamsGetAllTranlationsLocalUsecase());
+      function.fold((failure) {
+        emit(const ErrorTranlationState(
+            message: Constants.databaseFailureMessage));
+      }, (data) {
+        emit(GetAllTranlationsLocalState(tranlationItems: data));
+      });
+    } catch (e) {
       emit(ErrorTranlationState(message: e.toString()));
     }
   }
-
 }
