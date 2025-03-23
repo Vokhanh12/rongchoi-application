@@ -12,7 +12,6 @@ class CustomTextFormField extends StatefulWidget {
   final String? title;
   final String? svgUrl;
   final String? Function(String?)? validator;
-  final TextEditingController controller;
 
   const CustomTextFormField({
     Key? key,
@@ -20,7 +19,6 @@ class CustomTextFormField extends StatefulWidget {
     this.title,
     this.svgUrl,
     this.validator,
-    required this.controller,
   }) : super(key: key);
 
   @override
@@ -72,7 +70,7 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
                     cursorColor: AppColors.TF_CURSOR_COLOR,
                     autovalidateMode: AutovalidateMode.onUserInteraction,
                     validator: widget.validator,
-                    controller: widget.controller,
+                    controller: TextEditingController(),
                     style: AppText.b2,
                     decoration: InputDecoration(
                       prefixIcon: widget.svgUrl == null
