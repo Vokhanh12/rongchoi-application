@@ -60,12 +60,14 @@ sealed class AppColors {
   static const Color transparentColor = Color(0xff484848); //with opacity 24%
 
   /////////////////////////////////////////////////////////////////
-  // Color for custome text form field componet 
+  // Color for custome text form field componet
   static const Color iceBlueBackgroupTf = Color(0xFFF0F5FA);
   static const Color blueHazeTextTf = Color(0xFFB4B9CA);
   // Color for custome text check box componet
   static const Color orangeShadeCkb = Color(0xFFFF7622);
-  
+
+  static const Color aliceBlueColor = Color(0xFFF0F5FA);
+
   static const Color _PRIMARY_COLOR = Color(0xFF454750);
   static const Color _ALICEBLUE_COLOR = Color(0xFFF0F5FA);
   static const Color _WHITE_COLOR = Color.fromARGB(255, 255, 255, 255);
@@ -76,14 +78,8 @@ sealed class AppColors {
 
   /// Custom Text Field ////////////////////////////////////////////////////////////////////////////////////////////////
   static Color TF_TEXT_COLOR = _PRIMARY_COLOR;
-  static Color TF_CURSOR_COLOR= _PRIMARY_COLOR;
+  static Color TF_CURSOR_COLOR = _PRIMARY_COLOR;
   static Color TF_BOXDECORATION_COLOR = _ALICEBLUE_COLOR;
 
-   /// Custom Check Box ////////////////////////////////////////////////////////////////////////////////////////////////
-   
-
-
-
-
-
+  /// Custom Check Box ////////////////////////////////////////////////////////////////////////////////////////////////
 }

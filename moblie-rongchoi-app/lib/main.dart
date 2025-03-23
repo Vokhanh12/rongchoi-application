@@ -47,14 +47,25 @@ void main() async {
   final tranlations_6 = TranlationsEntity(
       id: 6,
       code: 'RC.SignUpNow',
-      tranlationVi: 'Đăng ký ngay',
-      tranlationEn: "Sign up now");
+      tranlationVi: 'ĐĂNG KÝ',
+      tranlationEn: "SIGN UP");
+  final tranlations_7 = TranlationsEntity(
+      id: 7,
+      code: 'RC.RememberMe',
+      tranlationVi: 'Ghi nhớ tài khoản',
+      tranlationEn: "Remember me");
+
+  final tranlations_8 = TranlationsEntity(
+      id: 7, code: 'RC.Or', tranlationVi: 'Hoặc', tranlationEn: "Or");
+
   await dbHelper.saveTranlationLocal(tranlations_1);
   await dbHelper.saveTranlationLocal(tranlations_2);
   await dbHelper.saveTranlationLocal(tranlations_3);
   await dbHelper.saveTranlationLocal(tranlations_4);
   await dbHelper.saveTranlationLocal(tranlations_5);
   await dbHelper.saveTranlationLocal(tranlations_6);
+  await dbHelper.saveTranlationLocal(tranlations_7);
+  await dbHelper.saveTranlationLocal(tranlations_8);
 
   print("test");
 
