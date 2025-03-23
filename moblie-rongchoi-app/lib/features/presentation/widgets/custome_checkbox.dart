@@ -1,10 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:rongchoi_application/core/constants/corlos.dart';
+import 'package:rongchoi_application/features/presentation/widgets/custom_text.dart';
 
 class CustomeCheckbox extends StatelessWidget {
-  const CustomeCheckbox({super.key, required this.onChanged, required this.value});
+  const CustomeCheckbox(
+      {super.key,
+      required this.onChanged,
+      required this.value,
+      required this.text});
 
   final Function(bool?)? onChanged;
   final bool value;
+  final text;
 
   @override
   Widget build(BuildContext context) {
@@ -17,14 +24,28 @@ class CustomeCheckbox extends StatelessWidget {
       if (states.any(interactiveStates.contains)) {
         return Colors.blue;
       }
-      return Colors.red;
+      return Colors.white;
     }
-    
-    return Checkbox(
-      checkColor: Colors.white,
-      fillColor: WidgetStateProperty.resolveWith(getColor),
-      value: this.value,
-      onChanged: onChanged
+
+    return Row(
+      children: [
+        SizedBox(
+          width: 20,
+          height: 20,
+          child: Checkbox(
+              checkColor: Colors.white,
+              fillColor: WidgetStateProperty.resolveWith(getColor),
+              value: this.value,
+              side: BorderSide(color: Colors.blueGrey.shade100, width: 2),
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(4)),
+              onChanged: onChanged),
+        ),
+        SizedBox(
+          width: 5,
+        ),
+        CustomText(text: this.text)
+      ],
     );
   }
 }

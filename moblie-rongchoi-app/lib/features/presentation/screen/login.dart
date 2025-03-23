@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:rongchoi_application/core/config/app_dimensions.dart';
 import 'package:rongchoi_application/core/config/space.dart';
 import 'package:rongchoi_application/core/constants/assets.dart';
-import 'package:rongchoi_application/core/constants/corlos.dart';
 import 'package:rongchoi_application/core/validator/validator.dart';
 import 'package:rongchoi_application/features/presentation/widgets/auto_form.dart';
 import 'package:rongchoi_application/features/presentation/widgets/custom_text.dart';
 import 'package:rongchoi_application/features/presentation/widgets/custom_textformfield.dart';
+import 'package:rongchoi_application/features/presentation/widgets/custome_checkbox.dart';
 import 'package:rongchoi_application/features/presentation/widgets/custome_column_data.dart';
 import 'package:extension_type_unions/extension_type_unions.dart';
 import 'package:rongchoi_application/features/presentation/widgets/custome_elevated_button.dart';
@@ -63,7 +62,7 @@ class _LoginScreenState extends State<LoginScreen> {
             Padding(
               padding: Space.hf(1.3),
               child: Column(
-                crossAxisAlignment: CrossAxisAlignment.end,
+                crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   AutoForm(
@@ -81,12 +80,30 @@ class _LoginScreenState extends State<LoginScreen> {
                   SizedBox(
                     height: 20,
                   ),
-                  CustomText(
-                      text: 'RC.ForgotPassword', textAlign: TextAlign.right),
+                  Row(
+                    children: [
+                      CustomeCheckbox(
+                          text: "RC.RememberMe",
+                          onChanged: (value) {},
+                          value: false),
+                      Spacer(),
+                      CustomText(
+                          text: 'RC.ForgotPassword',
+                          textAlign: TextAlign.right),
+                    ],
+                  ),
                   SizedBox(
                     height: 20,
                   ),
                   CustomeElevatedButton(text: 'RC.Login'),
+                  SizedBox(
+                    height: 30,
+                  ),
+                  signUpPrompt,
+                  SizedBox(
+                    height: 20,
+                  ),
+                  CustomText(text: 'RC.Or'),
                 ],
               ),
 
@@ -156,8 +173,6 @@ class _LoginScreenState extends State<LoginScreen> {
               //   ),
               // ),
             ),
-
-            registerBox
           ],
         ),
       ),
@@ -187,13 +202,12 @@ class _LoginScreenState extends State<LoginScreen> {
 
   // Decor 02
   Widget get decorRight02 => Positioned(
-        child: Align(
-          alignment: Alignment(1.0, -0.6),
-          child: SvgPicture.asset(
-              width: MediaQuery.of(context).size.width * 0.2,
-              height: MediaQuery.of(context).size.height * 0.2,
-              AppAssets.loginDecore02),
-        ),
+        top: MediaQuery.of(context).size.height / 7,
+        right: 0,
+        child: SvgPicture.asset(
+            width: MediaQuery.of(context).size.width * 0.2,
+            height: MediaQuery.of(context).size.height * 0.2,
+            AppAssets.loginDecore02),
       );
 
   // Decor 03
@@ -216,24 +230,23 @@ class _LoginScreenState extends State<LoginScreen> {
         ),
       );
 
-  Widget get registerBox => Positioned(
-      bottom: 0,
-      child: Padding(
-        padding: const EdgeInsets.only(bottom: 20),
-        child: SizedBox(
-          width: MediaQuery.of(context).size.width,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              CustomText(text: 'RC.HaveAccount', textAlign: TextAlign.right),
-              SizedBox(
-                width: 5,
-              ),
-              CustomText(text: 'RC.SignUpNow', textAlign: TextAlign.right),
-            ],
-          ),
+  Widget get signUpPrompt => SizedBox(
+        width: MediaQuery.of(context).size.width,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            CustomText(text: 'RC.HaveAccount', textAlign: TextAlign.right),
+            SizedBox(
+              width: 7,
+            ),
+            CustomText(text: 'RC.SignUpNow', textAlign: TextAlign.right),
+            //tranlate
+          ],
         ),
-      ));
+      );
+
+  Widget get tranlate =>
+      SvgPicture.asset(width: 30, height: 30, AppAssets.flagVi);
 
   Widget get tranlateFlag => SizedBox(
         width: MediaQuery.of(context).size.width,
