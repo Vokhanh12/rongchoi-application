@@ -56,7 +56,10 @@ void main() async {
       tranlationEn: "Remember me");
 
   final tranlations_8 = TranlationsEntity(
-      id: 7, code: 'RC.Or', tranlationVi: 'Hoặc', tranlationEn: "Or");
+      id: 7,
+      code: 'RC.Or',
+      tranlationVi: 'Hoặc',
+      tranlationEn: "Or sign in with");
 
   await dbHelper.saveTranlationLocal(tranlations_1);
   await dbHelper.saveTranlationLocal(tranlations_2);

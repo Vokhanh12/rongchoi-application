@@ -5,6 +5,14 @@ sealed class AppColors {
   static const Color scaffoldBackground = Color(0xffeeeeee);
   static const Color scaffoldBackground1 = Color(0xFFF2F6FC);
 
+  static Color primary = const Color(0XFF1460F2);
+  static Color white = const Color(0XFFFFFFFF);
+  static Color background = const Color(0XFFFAFAFA);
+  static Color grayscaleDark100 = const Color(0XFF1C1C1E);
+  static Color line = const Color(0XFFEBEBEB);
+  static Color background2 = const Color(0XFFF6F6F6);
+  static Color grayscale40 = const Color(0XFFAEAEB2);
+
   /// A deep reddish color
   static const Color antiqueRuby = Color(0xffb93273);
 

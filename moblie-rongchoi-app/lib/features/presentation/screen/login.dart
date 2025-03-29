@@ -1,16 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:rongchoi_application/core/config/space.dart';
 import 'package:rongchoi_application/core/constants/assets.dart';
+import 'package:rongchoi_application/core/constants/corlos.dart';
 import 'package:rongchoi_application/core/validator/validator.dart';
+import 'package:rongchoi_application/features/presentation/screen/otp.dart';
 import 'package:rongchoi_application/features/presentation/widgets/auto_form.dart';
 import 'package:rongchoi_application/features/presentation/widgets/custom_text.dart';
+import 'package:rongchoi_application/features/presentation/widgets/custom_textbutton.dart';
 import 'package:rongchoi_application/features/presentation/widgets/custom_textformfield.dart';
 import 'package:rongchoi_application/features/presentation/widgets/custome_checkbox.dart';
 import 'package:rongchoi_application/features/presentation/widgets/custome_column_data.dart';
 import 'package:extension_type_unions/extension_type_unions.dart';
 import 'package:rongchoi_application/features/presentation/widgets/custome_elevated_button.dart';
 import 'package:rongchoi_application/features/presentation/widgets/custome_row_data.dart';
+import 'package:rongchoi_application/features/presentation/widgets/secondary_button.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -87,9 +92,16 @@ class _LoginScreenState extends State<LoginScreen> {
                           onChanged: (value) {},
                           value: false),
                       Spacer(),
-                      CustomText(
-                          text: 'RC.ForgotPassword',
-                          textAlign: TextAlign.right),
+                      CustomTextbutton(
+                        label: 'RC.ForgotPassword',
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const OtpScreen()),
+                          );
+                        },
+                      ),
                     ],
                   ),
                   SizedBox(
@@ -100,10 +112,28 @@ class _LoginScreenState extends State<LoginScreen> {
                     height: 30,
                   ),
                   signUpPrompt,
-                  SizedBox(
+                  const SizedBox(
                     height: 20,
                   ),
-                  CustomText(text: 'RC.Or'),
+                  Column(
+                    children: [
+                      CustomText(text: 'RC.Or'),
+                      const SizedBox(height: 24),
+                      SecondaryButton(
+                          height: 56,
+                          textColor: AppColors.grayscaleDark100,
+                          width: 280,
+                          onTap: () {},
+                          borderRadius: 24,
+                          bgColor: AppColors.background.withOpacity(0.3),
+                          text: 'Continue with Google',
+                          icons: AppAssets.googleIcon),
+                    ],
+                  ),
+                  const SizedBox(
+                    height: 50,
+                  ),
+                  termAndPrivacyText
                 ],
               ),
 
@@ -254,6 +284,58 @@ class _LoginScreenState extends State<LoginScreen> {
           width: MediaQuery.of(context).size.width * 0.2,
           height: MediaQuery.of(context).size.height * 0.2,
           AppAssets.loginDecore04,
+        ),
+      );
+
+  Widget get termAndPrivacyText => RichText(
+        textAlign: TextAlign.center,
+        text: TextSpan(
+          style: GoogleFonts.plusJakartaSans(
+                  fontSize: 14,
+                  fontWeight: FontWeight.w500,
+                  color: AppColors.white)
+              .copyWith(
+                  color: AppColors.grayscale40,
+                  fontWeight: FontWeight.w500,
+                  fontSize: 14),
+          children: [
+            TextSpan(
+              text: ' By signing up you agree to our',
+            ),
+            TextSpan(
+              text: ' Terms',
+              style: GoogleFonts.plusJakartaSans(
+                      fontSize: 14,
+                      fontWeight: FontWeight.w500,
+                      color: AppColors.white)
+                  .copyWith(
+                      color: AppColors.grayscaleDark100,
+                      fontWeight: FontWeight.w500,
+                      fontSize: 14),
+            ),
+            TextSpan(
+              text: '  and',
+              style: GoogleFonts.plusJakartaSans(
+                      fontSize: 14,
+                      fontWeight: FontWeight.w500,
+                      color: AppColors.white)
+                  .copyWith(
+                      color: AppColors.grayscale40,
+                      fontWeight: FontWeight.w500,
+                      fontSize: 14),
+            ),
+            TextSpan(
+              text: " Conditions of Use",
+              style: GoogleFonts.plusJakartaSans(
+                      fontSize: 14,
+                      fontWeight: FontWeight.w500,
+                      color: AppColors.white)
+                  .copyWith(
+                      color: AppColors.grayscaleDark100,
+                      fontWeight: FontWeight.w500,
+                      fontSize: 14),
+            ),
+          ],
         ),
       );
 }

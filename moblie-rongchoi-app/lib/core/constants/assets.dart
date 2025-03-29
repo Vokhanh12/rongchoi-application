@@ -10,6 +10,7 @@ sealed class AppAssets {
   static const String loginDecore02 = "$svgPath/login-decore-02.svg";
   static const String loginDecore03 = "$svgPath/login-decore-03.svg";
   static const String loginDecore04 = "$svgPath/login-decore-04.svg";
+  static const String googleIcon = "$imagePath/google-symbol.png";
 
   static const String flagVi = "$svgPath/flag-vi.svg";
   static const String flagEn = "$svgPath/flag-en.svg";
