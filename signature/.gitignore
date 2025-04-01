@@ -38,4 +38,6 @@ logs
 moblie-rongchoi-app/ios/Flutter/Generated.xcconfig
 moblie-rongchoi-app/ios/Flutter/AppFrameworkInfo.plist
 moblie-rongchoi-app/ios/Flutter/ephemeral/
+build/
+mobile-rongchoi-app/build/
 moblie-rongchoi-app/build/ios/
