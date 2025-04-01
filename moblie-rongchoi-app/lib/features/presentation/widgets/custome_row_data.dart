@@ -1,24 +1,14 @@
 import 'package:flutter/material.dart';
 
-
 class CustomeRowData extends StatelessWidget {
-
-
   const CustomeRowData({super.key, required this.children});
 
   final List<Widget> children;
 
-  
-
   @override
   Widget build(BuildContext context) {
-
-
-    return Row(
-      children: children
-    );
+    return Row(children: children);
   }
-
 }
 
 

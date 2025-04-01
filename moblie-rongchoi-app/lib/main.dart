@@ -56,7 +56,7 @@ void main() async {
       tranlationEn: "Remember me");
 
   final tranlations_8 = TranlationsEntity(
-      id: 7,
+      id: 8,
       code: 'RC.Or',
       tranlationVi: 'Hoặc',
       tranlationEn: "Or sign in with");
@@ -69,8 +69,6 @@ void main() async {
   await dbHelper.saveTranlationLocal(tranlations_6);
   await dbHelper.saveTranlationLocal(tranlations_7);
   await dbHelper.saveTranlationLocal(tranlations_8);
-
-  print("test");
 
   var test = await dbHelper.getAllTranslationsLocal();
   print(test);

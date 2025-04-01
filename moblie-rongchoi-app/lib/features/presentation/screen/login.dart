@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:rongchoi_application/core/config/app_redacted.dart';
 import 'package:rongchoi_application/core/config/space.dart';
 import 'package:rongchoi_application/core/constants/assets.dart';
 import 'package:rongchoi_application/core/constants/corlos.dart';
 import 'package:rongchoi_application/core/validator/validator.dart';
 import 'package:rongchoi_application/features/presentation/screen/otp.dart';
 import 'package:rongchoi_application/features/presentation/widgets/auto_form.dart';
+import 'package:rongchoi_application/features/presentation/widgets/custom_redacted.dart';
 import 'package:rongchoi_application/features/presentation/widgets/custom_text.dart';
 import 'package:rongchoi_application/features/presentation/widgets/custom_textbutton.dart';
 import 'package:rongchoi_application/features/presentation/widgets/custom_textformfield.dart';
@@ -56,158 +58,182 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        height: double.infinity,
+      body: SingleChildScrollView(
+        scrollDirection: Axis.vertical,
         child: Stack(
           children: [
             decorLeft01,
             decorRight02,
             decorRight03,
             //decorBottomLeft04,
-            Padding(
-              padding: Space.hf(1.3),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  AutoForm(
-                      child:
-                          Union3<CustomeColumnData, CustomeRowData, Widget>.in1(
-                              CustomeColumnData(
-                    children: [
-                      CustomTextFormField(label: 'RC.Username'),
-                      SizedBox(
-                        height: 20,
-                      ),
-                      CustomTextFormField(label: 'RC.Password'),
-                    ],
-                  ))),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  Row(
-                    children: [
-                      CustomeCheckbox(
-                          text: "RC.RememberMe",
-                          onChanged: (value) {},
-                          value: false),
-                      Spacer(),
-                      CustomTextbutton(
-                        label: 'RC.ForgotPassword',
-                        onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => const OtpScreen()),
-                          );
-                        },
-                      ),
-                    ],
-                  ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  CustomeElevatedButton(text: 'RC.Login'),
-                  SizedBox(
-                    height: 30,
-                  ),
-                  signUpPrompt,
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  Column(
-                    children: [
-                      CustomText(text: 'RC.Or'),
-                      const SizedBox(height: 24),
-                      SecondaryButton(
-                          height: 56,
-                          textColor: AppColors.grayscaleDark100,
-                          width: 280,
-                          onTap: () {},
-                          borderRadius: 24,
-                          bgColor: AppColors.background.withOpacity(0.3),
-                          text: 'Continue with Google',
-                          icons: AppAssets.googleIcon),
-                    ],
-                  ),
-                  const SizedBox(
-                    height: 50,
-                  ),
-                  termAndPrivacyText
-                ],
-              ),
+            Padding(padding: Space.hf(1.3), child: body
 
-              // child: Form(
-              //   key: _formKey,
-              //   child: Column(
-              //     children: [
-              //       CustomTextFormField(
-              //         label: "RC.Username",
-              //         controller: _usernameController,
-              //       ),
-              //       Space.yf(1.3),
-              //       CustomTextFormField(
-              //           label: "RC.Password",
-              //           controller: _passwordController,
-              //           validator: _validators.validatePassword),
-              //       Space.yf(.3),
-              //       Row(
-              //         children: [
-              //           Row(
-              //             children: [
-              //               CustomeCheckbox(onChanged: (isChecked){}, value: true),
-              //               CustomText(text: "RC.Remember")
-              //             ],
-              //           ),
-              //           Spacer(),
-              //           CustomText(
-              //             text: "RC.ForgotPassword",
-              //             style: AppText.b2,
-              //           ),
-              //         ],
-              //       ),
-              //       Space.yf(2.5),
-              //       // BlocConsumer<SignInBloc, SignInState>(
-              //       //   listener: (context, state) {
-              //       //     if (state.status == SignInStatus.error) {
-              //       //       showErrorAuthBottomSheet(context);
-              //       //     }
-              //       //     if (state.status == SignInStatus.success) {
-              //       //       showSuccessfulAuthBottomSheet(context, false);
-              //       //     }
-              //       //   },
-              //       //   builder: (context, state) {
-              //       //     return customElevatedButton(
-              //       //       onTap: () {
-              //       //         if (_formKey.currentState!.validate()) {
-              //       //           context.read<SignInBloc>().add(
-              //       //                 SignInWithCredential(
-              //       //                   email: _emailController.text.trim(),
-              //       //                   password: _passwordController.text.trim(),
-              //       //                 ),
-              //       //               );
-              //       //         }
-              //       //       },
-              //       //       text: (state.status == SignInStatus.submitting)
-              //       //           ? AppStrings.wait
-              //       //           : "Login".toUpperCase(),
-              //       //       heightFraction: 20,
-              //       //       width: double.infinity,
-              //       //       color: AppColors.commonAmber,
-              //       //     );
-              //       //   },
-              //       // ),
-              //       Space.yf(2.5),
-              //       CustomeElevatedButton(text: "RC.Login")
-              //     ],
-              //   ),
-              // ),
-            ),
+                // child: Form(
+                //   key: _formKey,
+                //   child: Column(
+                //     children: [
+                //       CustomTextFormField(
+                //         label: "RC.Username",
+                //         controller: _usernameController,
+                //       ),
+                //       Space.yf(1.3),
+                //       CustomTextFormField(
+                //           label: "RC.Password",
+                //           controller: _passwordController,
+                //           validator: _validators.validatePassword),
+                //       Space.yf(.3),
+                //       Row(
+                //         children: [
+                //           Row(
+                //             children: [
+                //               CustomeCheckbox(onChanged: (isChecked){}, value: true),
+                //               CustomText(text: "RC.Remember")
+                //             ],
+                //           ),
+                //           Spacer(),
+                //           CustomText(
+                //             text: "RC.ForgotPassword",
+                //             style: AppText.b2,
+                //           ),
+                //         ],
+                //       ),
+                //       Space.yf(2.5),
+                //       // BlocConsumer<SignInBloc, SignInState>(
+                //       //   listener: (context, state) {
+                //       //     if (state.status == SignInStatus.error) {
+                //       //       showErrorAuthBottomSheet(context);
+                //       //     }
+                //       //     if (state.status == SignInStatus.success) {
+                //       //       showSuccessfulAuthBottomSheet(context, false);
+                //       //     }
+                //       //   },
+                //       //   builder: (context, state) {
+                //       //     return customElevatedButton(
+                //       //       onTap: () {
+                //       //         if (_formKey.currentState!.validate()) {
+                //       //           context.read<SignInBloc>().add(
+                //       //                 SignInWithCredential(
+                //       //                   email: _emailController.text.trim(),
+                //       //                   password: _passwordController.text.trim(),
+                //       //                 ),
+                //       //               );
+                //       //         }
+                //       //       },
+                //       //       text: (state.status == SignInStatus.submitting)
+                //       //           ? AppStrings.wait
+                //       //           : "Login".toUpperCase(),
+                //       //       heightFraction: 20,
+                //       //       width: double.infinity,
+                //       //       color: AppColors.commonAmber,
+                //       //     );
+                //       //   },
+                //       // ),
+                //       Space.yf(2.5),
+                //       CustomeElevatedButton(text: "RC.Login")
+                //     ],
+                //   ),
+                // ),
+                ),
           ],
         ),
       ),
     );
   }
+
+  Widget get body => Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Padding(
+            padding: const EdgeInsets.only(
+              top: 235,
+            ),
+            child: Text(
+              '',
+              style: TextStyle(
+                fontSize: 32,
+                fontWeight: FontWeight.bold,
+                fontFamily: 'Inter',
+              ),
+            ),
+          ),
+          AutoForm(
+              child: Union3<CustomeColumnData, CustomeRowData, Widget>.in1(
+                  CustomeColumnData(
+            children: [
+              CustomTextFormField(label: 'RC.Username'),
+              SizedBox(
+                height: 20,
+              ),
+              CustomTextFormField(label: 'RC.Password'),
+            ],
+          ))),
+          SizedBox(
+            height: 20,
+          ),
+          Row(
+            children: [
+              CustomeCheckbox(
+                config: CheckboxConfig(
+                  textConfig: TextConfig(
+                    label: "RC.RememberMe",
+                  ),
+                  onChanged: (value) {},
+                  isChecked: false,
+                ),
+              ),
+              Spacer(),
+              CustomTextbutton(
+                label: 'RC.ForgotPassword',
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const OtpScreen()),
+                  );
+                },
+              ),
+            ],
+          ),
+          SizedBox(
+            height: 20,
+          ),
+          CustomeElevatedButton(
+            config: ElevatedButtonConfig(
+                onPressed: () {}, textConfig: TextConfig(label: 'RC.Login')),
+          ),
+          SizedBox(
+            height: 30,
+          ),
+          signUpPrompt,
+          const SizedBox(
+            height: 20,
+          ),
+          Column(
+            children: [
+              CustomText(
+                  config: TextConfig(label: 'RC.Or'),
+                  redactedConfig: RedactedConfig(
+                      context: context,
+                      redact: true,
+                      configuration: AppRedacted.redactedConfiguration)),
+              const SizedBox(height: 24),
+              SecondaryButton(
+                  height: 56,
+                  textColor: AppColors.grayscaleDark100,
+                  width: 280,
+                  onTap: () {},
+                  borderRadius: 24,
+                  bgColor: AppColors.background.withOpacity(0.3),
+                  text: 'Continue with Google',
+                  icons: AppAssets.googleIcon),
+            ],
+          ),
+          const SizedBox(
+            height: 50,
+          ),
+          termAndPrivacyText
+        ],
+      );
 
   Widget get background => Positioned(
       top: 0.0,
@@ -219,7 +245,6 @@ class _LoginScreenState extends State<LoginScreen> {
         color: Colors.white,
       ));
 
-  // Decor 01
   Widget get decorLeft01 => Positioned(
         child: Align(
           alignment: Alignment.topLeft,
@@ -230,7 +255,6 @@ class _LoginScreenState extends State<LoginScreen> {
         ),
       );
 
-  // Decor 02
   Widget get decorRight02 => Positioned(
         top: MediaQuery.of(context).size.height / 7,
         right: 0,
@@ -240,7 +264,6 @@ class _LoginScreenState extends State<LoginScreen> {
             AppAssets.loginDecore02),
       );
 
-  // Decor 03
   Widget get decorRight03 => Align(
         alignment: Alignment.topRight,
         child: SvgPicture.asset(
@@ -249,7 +272,6 @@ class _LoginScreenState extends State<LoginScreen> {
             AppAssets.loginDecore03),
       );
 
-  // Decor 04
   Widget get decorBottomLeft04 => Positioned(
         bottom: 0,
         left: 0,
@@ -265,11 +287,25 @@ class _LoginScreenState extends State<LoginScreen> {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            CustomText(text: 'RC.HaveAccount', textAlign: TextAlign.right),
+            CustomText(
+              config: TextConfig(
+                  label: 'RC.HaveAccount', textAlign: TextAlign.right),
+              redactedConfig: RedactedConfig(
+                  context: context,
+                  redact: true,
+                  configuration: AppRedacted.redactedConfiguration),
+            ),
             SizedBox(
               width: 7,
             ),
-            CustomText(text: 'RC.SignUpNow', textAlign: TextAlign.right),
+            CustomText(
+              config:
+                  TextConfig(label: 'RC.SignUpNow', textAlign: TextAlign.right),
+              redactedConfig: RedactedConfig(
+                  context: context,
+                  redact: true,
+                  configuration: AppRedacted.redactedConfiguration),
+            ),
             //tranlate
           ],
         ),

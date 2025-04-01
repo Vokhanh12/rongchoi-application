@@ -1,24 +1,14 @@
 import 'package:flutter/material.dart';
 
-
 class CustomeColumnData extends StatelessWidget {
-
-
   const CustomeColumnData({super.key, required this.children});
 
   final List<Widget> children;
 
-  
-
   @override
   Widget build(BuildContext context) {
-
-
-    return Column(
-      children: children
-    );
+    return Column(children: children);
   }
-
 }
 
 
