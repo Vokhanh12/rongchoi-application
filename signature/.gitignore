@@ -29,6 +29,13 @@ build/
 !**/src/main/**/build/
 !**/src/test/**/build/
 
+
+
+
 ### VS Code ###
 .vscode
 logs
+moblie-rongchoi-app/ios/Flutter/Generated.xcconfig
+moblie-rongchoi-app/ios/Flutter/AppFrameworkInfo.plist
+moblie-rongchoi-app/ios/Flutter/ephemeral/
+moblie-rongchoi-app/build/ios/
