@@ -13,14 +13,16 @@ class CustomTextFormField extends StatefulWidget {
   final String? title;
   final String? svgUrl;
   final String? Function(String?)? validator;
+  final Function()? onTap;
 
-  const CustomTextFormField({
-    Key? key,
-    required this.label,
-    this.title,
-    this.svgUrl,
-    this.validator,
-  }) : super(key: key);
+  const CustomTextFormField(
+      {Key? key,
+      required this.label,
+      this.title,
+      this.svgUrl,
+      this.validator,
+      this.onTap})
+      : super(key: key);
 
   @override
   _CustomTextFormFieldState createState() => _CustomTextFormFieldState();
@@ -78,6 +80,7 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
                 autovalidateMode: AutovalidateMode.onUserInteraction,
                 validator: widget.validator,
                 style: AppText.b2,
+                onTap: widget.onTap,
                 decoration: InputDecoration(
                   prefixIcon: widget.svgUrl == null
                       ? null

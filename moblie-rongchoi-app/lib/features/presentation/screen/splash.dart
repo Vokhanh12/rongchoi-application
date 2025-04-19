@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:rongchoi_application/core/constants/assets.dart';
+import 'package:flutter/services.dart';
+import 'package:rive/rive.dart';
 import 'package:rongchoi_application/core/config/app.dart';
 import 'package:rongchoi_application/core/routes/routes.dart';
 
@@ -11,6 +12,8 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
+  Artboard? _artboard;
+
   void _nextScreen() {
     Future.delayed(const Duration(seconds: 5), () {
       Navigator.of(context).pushNamedAndRemoveUntil(
@@ -22,10 +25,20 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   void initState() {
-    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+    super.initState();
+
+    rootBundle.load('assets/animations/splash_logo.riv').then((data) {
+      final file = RiveFile.import(data);
+      final artboard = file.mainArtboard;
+
+      artboard.addController(SimpleAnimation('Timeline 1'));
+
+      setState(() => _artboard = artboard);
+    });
+
+    WidgetsBinding.instance.addPostFrameCallback((_) {
       _nextScreen();
     });
-    super.initState();
   }
 
   @override
@@ -33,15 +46,13 @@ class _SplashScreenState extends State<SplashScreen> {
     App.init(context);
     return Scaffold(
       backgroundColor: Colors.white,
-      body: Stack(
-        alignment: Alignment.center,
-        fit: StackFit.expand,
-        children: [
-          Padding(
-            padding: const EdgeInsets.all(100.0),
-            child: Image(image: AssetImage(AppAssets.logoSplashScreen)),
-          ),
-        ],
+      body: Center(
+        child: _artboard == null
+            ? const CircularProgressIndicator()
+            : Rive(
+                artboard: _artboard!,
+                fit: BoxFit.contain,
+              ),
       ),
     );
   }

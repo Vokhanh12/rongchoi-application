@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:rive/rive.dart';
 import 'package:rongchoi_application/core/constants/corlos.dart';
 import 'package:rongchoi_application/core/constants/strings.dart';
 import 'package:rongchoi_application/core/observer/bloc_observer.dart';
@@ -13,6 +14,8 @@ import 'package:rongchoi_application/injection_container.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   Bloc.observer = RCBlocObserver();
+
+  await RiveFile.initialize();
 
   await initLocator();
 

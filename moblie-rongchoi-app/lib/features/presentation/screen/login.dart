@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:rive/rive.dart';
 import 'package:rongchoi_application/core/config/app_redacted.dart';
 import 'package:rongchoi_application/core/config/space.dart';
 import 'package:rongchoi_application/core/constants/assets.dart';
@@ -27,6 +29,13 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+  Artboard? _artboard;
+  final List<String> _animations = [
+    'Timeline 1',
+    'picking'
+  ]; // tên animation trong file Rive
+  int _currentIndex = 0;
+  RiveAnimationController? _controller;
   final TextEditingController _usernameController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
 
@@ -39,16 +48,41 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   void initState() {
-    // TODO: implement initState
     _usernameFocusNode = FocusNode();
     _passwordForcusNode = FocusNode();
 
     super.initState();
+
+    rootBundle
+        .load('assets/animations/animated_login_character.riv')
+        .then((data) {
+      final file = RiveFile.import(data);
+      final artboard = file.mainArtboard;
+
+      _controller = SimpleAnimation(_animations[_currentIndex]);
+      artboard.addController(_controller!);
+
+      setState(() => _artboard = artboard);
+    });
+  }
+
+  void _changeAnimation() {
+    if (_artboard == null) return;
+
+    // Gỡ animation hiện tại
+    _artboard!.removeController(_controller!);
+
+    // Chuyển sang animation kế tiếp
+    _currentIndex = (_currentIndex + 1) % _animations.length;
+
+    _controller = SimpleAnimation(_animations[_currentIndex]);
+    _artboard!.addController(_controller!);
+
+    setState(() {});
   }
 
   @override
   void dispose() {
-    // TODO: implement dispose
     super.dispose();
 
     _usernameController.dispose();
@@ -62,6 +96,16 @@ class _LoginScreenState extends State<LoginScreen> {
         scrollDirection: Axis.vertical,
         child: Stack(
           children: [
+            Positioned.fill(
+              bottom: 470,
+              child: _artboard == null
+                  ? const Center(child: CircularProgressIndicator())
+                  : Rive(
+                      artboard: _artboard!,
+                      fit: BoxFit.contain,
+                    ),
+            ),
+
             decorLeft01,
             decorRight02,
             decorRight03,
@@ -161,7 +205,12 @@ class _LoginScreenState extends State<LoginScreen> {
               child: Union3<CustomeColumnData, CustomeRowData, Widget>.in1(
                   CustomeColumnData(
             children: [
-              CustomTextFormField(label: 'RC.Username'),
+              CustomTextFormField(
+                label: 'RC.Username',
+                onTap: () {
+                  _changeAnimation();
+                },
+              ),
               SizedBox(
                 height: 20,
               ),
